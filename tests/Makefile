@@ -1,0 +1,50 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/05/12 13:15:08 by pecavalc          #+#    #+#              #
+#    Updated: 2025/05/22 16:37:01 by pecavalc         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = run_tests
+	
+SOURCES_DIR = ../
+OBJECTS_DIR = ../
+SOURCES = $(wildcard $(SOURCES_DIR)/*.c)
+OBJECTS = $(SOURCES:$(SOURCES_DIR)/%.c=$(OBJECTS_DIR)/%.o)
+
+TEST_SOURCES = $(wildcard *.c)
+TEST_OBJECTS = $(TEST_SOURCES:%.c=%.o)
+
+CFLAGS = -Wall -Wextra -Werror -I../
+
+all: $(NAME) check_norm run 
+
+$(NAME): $(TEST_OBJECTS) $(OBJECTS) 
+	cc $(CFLAGS) $^ -o $@
+
+$(TEST_OBJECTS_DIR)/%.o: $(TEST_SOURCES_DIR)/%.c
+	cc $(CFLAGS) -c -g $< -o $@
+
+$(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c
+	cc $(CFLAGS) -c $< -o $@
+
+check_norm: $(SOURCES)
+	@echo "\nNorminette tests:"
+	@norminette $^ -R CheckForbiddenHeaderSource
+	@cd ../ && norminette libft.h -R CheckForbiddenHeaderSource
+
+run: $(NAME)
+	@valgrind ./$(NAME)
+	
+clean:
+	@rm -f $(OBJECTS) $(TEST_OBJECTS)
+
+fclean: clean
+	@rm -f $(NAME) *.txt
+
+re: fclean all
