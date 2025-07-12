@@ -6,7 +6,7 @@
 #    By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 13:15:08 by pecavalc          #+#    #+#              #
-#    Updated: 2025/06/17 13:06:55 by pecavalc         ###   ########.fr        #
+#    Updated: 2025/07/12 17:26:58 by pecavalc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ OBJECTS = $(SOURCES:%.c=%.o)
 
 OBJECTS_BONUS = $(SOURCES_BONUS:%.c=%.o)
 
+HEADERS = libft.h libft_bonus.h
+
 CFLAGS = -Wall -Wextra -Werror -c
 
 all: $(NAME)
@@ -36,7 +38,7 @@ all: $(NAME)
 $(NAME): $(OBJECTS) 
 	ar rcs $@ $^ 
 
-%.o: %.c
+%.o: %.c $(HEADERS)
 	cc $(CFLAGS) $< -o $@
 
 bonus: $(OBJECTS) $(OBJECTS_BONUS)
