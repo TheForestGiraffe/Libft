@@ -6,44 +6,61 @@
 #    By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 13:15:08 by pecavalc          #+#    #+#              #
-#    Updated: 2025/07/12 22:00:17 by pecavalc         ###   ########.fr        #
+#    Updated: 2025/09/06 19:19:45 by pecavalc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 SRCS_DIR = srcs
+SRCS_DIR_GNL = $(SRCS_DIR)/get_next_line
+SRCS_DIR_PRINTF = $(SRCS_DIR)/ft_printf
+
 OBJS_DIR = objs
 
-SRCS =  ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
-		ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c \
-		ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c \
-		ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c \
-		ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c \
-		ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
-		ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
-		ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c \
-		ft_lstclear_bonus.c ft_lstdelone_bonus.c ft_lstdelone_bonus.c \
-		ft_lstiter_bonus.c ft_lstlast_bonus.c ft_lstmap_bonus.c \
-		ft_lstnew_bonus.c ft_lstsize_bonus.c \
-		get_next_line.c get_next_line_utils.c
-	  
-OBJS = $(patsubst %.c,$(OBJS_DIR)/%.o,$(SRCS))
+SRCS =  $(addprefix $(SRCS_DIR)/, ft_atoi.c ft_bzero.c ft_calloc.c \
+		ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
+		ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c \
+		ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+		ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c \
+		ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c \
+		ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c \
+		ft_tolower.c ft_toupper.c ft_lstadd_back.c \
+		ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
+		ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
+		ft_lstmap.c ft_lstnew.c ft_lstsize.c)
 
-PUBLIC_HEADER_DIR = include
-PUBLIC_HEADER = $(PUBLIC_HEADER_DIR)/libft.h
+SRCS_GNL = $(addprefix $(SRCS_DIR_GNL)/, get_next_line.c get_next_line_utils.c)
 
-PRIVATE_HEADERS_DIR = srcs/private
-PRIVATE_HEADERS = $(PRIVATE_HEADERS_DIR)/get_next_line.h
+SRCS_PRINTF = $(addprefix $(SRCS_DIR_PRINTF)/, ft_printf.c convert_arg.c \
+			  prefix_and_print_ptr.c print_char.c print_hex_lowcase_nbr.c \
+			  print_hex_uppercase_nbr.c print_nbr.c print_str.c \
+			  print_unsigned_nbr.c)
 
-CFLAGS = -Wall -Wextra -Werror -c -I$(PUBLIC_HEADER_DIR) -I$(PRIVATE_HEADERS_DIR)
+SRCS_ALL = $(SRCS) $(SRCS_GNL) $(SRCS_PRINTF)
+
+OBJS = $(patsubst %.c,$(OBJS_DIR)/%.o,$(notdir $(SRCS_ALL)))
+
+HEADER_DIR_PUBLIC = include
+HEADER_DIR_GNL = srcs/get_next_line
+HEADER_DIR_PRINTF = srcs/ft_printf
+
+HEADER_PUBLIC = $(HEADER_DIR_PUBLIC)/libft.h
+HEADER_GNL = $(HEADER_DIR_GNL)/get_next_line.h
+HEADER_PRINTF = $(HEADER_DIR_PRINTF)/ft_printf.h
+
+CFLAGS = -Wall -Wextra -Werror -c -I$(HEADER_DIR_PUBLIC) \
+								  -I$(HEADER_DIR_GNL) \
+								  -I$(HEADER_DIR_PRINTF)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) 
-	ar rcs $@ $^ 
+$(NAME): $(OBJS) $(HEADER_PUBLIC) $(HEADER_PRINTF) $(HEADER_GNL)
+	ar rcs $@ $^
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(PUBLIC_HEADER) $(PRIVATE_HEADERS)
+vpath %.c $(SRCS_DIR) $(SRCS_DIR_GNL) $(SRCS_DIR_PRINTF)
+
+$(OBJS_DIR)/%.o: %.c
 	mkdir -p $(OBJS_DIR)
 	cc $(CFLAGS) $< -o $@
 
@@ -51,6 +68,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(PUBLIC_HEADER) $(PRIVATE_HEADERS)
 
 clean:
 	rm -f $(OBJS)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
 	rm -f $(NAME)
