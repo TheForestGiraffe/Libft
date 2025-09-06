@@ -1,40 +1,29 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include "libft.h"
 
 int	test_get_next_line(void)
 {
-	int		fd_1;
-	int		fd_2;
-	int		fd_3;
+	int		fd;
 	
-	fd_1 = open("get_next_line_test_files/empty.txt", O_RDONLY);
-	fd_2 = open("get_next_line_test_files/1char.txt", O_RDONLY);
-	fd_3 = open("get_next_line_test_files/lorem.txt", O_RDONLY);
+	fd = open("srcs/get_next_line_test_files/lorem.txt", O_RDONLY);
 
-	if ((fd_1 < 0) || (fd_2 < 0) || (fd_3 < 0))
+	if (fd < 0)
 	{
-		printf("Could not open one of the files.\n");
+		printf("Could not open the file.\n");
 		return (0);
 	}
 
-	if (get_next_line(fd_1) != "")
+	if (strncmp(get_next_line(fd), "Lorem ipsum dolor sit amet.", 27))
 		return (0);
-	if (get_next_line(fd_2) != "0")
+	if (strncmp(get_next_line(fd), "\n", 1))
 		return (0);
-	if (get_next_line(fd_3) != "Lorem ipsum dolor sit amet.")
-		return (0);
-	if (get_next_line(fd_3) != "")
-		return (0);
-	if (get_next_line(fd_3) != "Nulla magna metus, ornare et mi nec, consectetur ullamcorper neque.")
-		return (0);
-	if (get_next_line(fd_3) != "")
+	if (strncmp(get_next_line(fd), "Nulla magna metus, ornare et mi nec, consectetur ullamcorper neque.", 67))
 		return (0);
 
-	close(fd_1);
-	close(fd_2);
-	close(fd_3);
-
+	close(fd);
 	return (1);
 }

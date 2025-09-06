@@ -6,14 +6,14 @@
 /*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:42:17 by pecavalc          #+#    #+#             */
-/*   Updated: 2025/09/06 20:17:52 by pecavalc         ###   ########.fr       */
+/*   Updated: 2025/09/07 00:23:21 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <limits.h>
-#include "ft_printf.h"
 #include "test_libft.h"
+#include "libft.h"
 
 void	test_ft_printf(void)
 {
@@ -30,7 +30,6 @@ void	test_ft_printf(void)
 	test_null_str();
 	test_double_percent();
 	test_all_again();
-	return (0);
 }
 
 void	test_c(void)

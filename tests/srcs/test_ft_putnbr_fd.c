@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_ft_putnbr_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pecavalc <pecavalc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:37:04 by pecavalc          #+#    #+#             */
-/*   Updated: 2025/05/20 17:59:59 by pecavalc         ###   ########.fr       */
+/*   Updated: 2025/09/07 01:00:27 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int	test_ft_putnbr_fd(void)
 	if (fd == -1)
 	{
 		printf("Cannot read file.\n");
-		return (1);
+		return (0);
 	}
     ft_putnbr_fd(-42000042, fd);
 	close(fd);
+	printf("%-30s [File created, inspect visually: _test_ft_putnbr_fd_test.txt]\n", "test_ft_putnbr_fd");
 	return (-1);
 }

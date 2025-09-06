@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   test_ft_memmove_forwardcpy.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pecavalc <pecavalc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 21:40:02 by pecavalc          #+#    #+#             */
-/*   Updated: 2025/05/16 16:28:27 by pedro            ###   ########.fr       */
+/*   Updated: 2025/09/07 00:39:21 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <stdio.h>
 #include <string.h>
-#include "unit_tests.h"
+#include "test_libft.h"
 
 int	test_ft_memmove_forwardcpy(void)
 {
@@ -24,7 +24,7 @@ int	test_ft_memmove_forwardcpy(void)
 	char	dest_target[] = "Lorem Ipsum";
 	size_t	i;
 
-	ft_strcpy(src, "Lorem Ipsum");
+	strcpy(src, "Lorem Ipsum");
 	//printf("\nTesting ft_memmove for des = src - 3 (forward copy):\n");
 	//printf("src before: %s\n", src);
 	ft_memmove(dest, src, 12);

@@ -6,7 +6,7 @@
 /*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 12:16:36 by pecavalc          #+#    #+#             */
-/*   Updated: 2025/09/06 20:18:49 by pecavalc         ###   ########.fr       */
+/*   Updated: 2025/09/07 00:56:19 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	main()
 {
 	printf("\n-- Testing Libft --\n");
-	printf("\n-- Obs: Test for list functions are not included. --\n");
+	printf("\nObs: Test for linked list functions are not included.\n\n");
 
     print_result(test_ft_isalpha(), "test_ft_isalpha");
 	print_result(test_ft_isdigit(), "test_ft_isdigit");
@@ -59,4 +59,16 @@ int	main()
 
 	printf("\n\n-- End of test. --\n\n");
     return (0);
+}
+
+void	print_result(int ft_return, char *ft_name)
+{
+	if (ft_return == 1)
+		printf("%-30s [Passed]\n", ft_name);
+	else if (ft_return == 0)
+		printf("%-30s [Failed]\n", ft_name);
+	else if (ft_return == -1)
+		{}
+	else
+		printf("%s:	The test function must return either 0 or 1. The test failed.\n", ft_name);
 }

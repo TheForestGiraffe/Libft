@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_ft_putchar_fd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pecavalc <pecavalc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:37:04 by pecavalc          #+#    #+#             */
-/*   Updated: 2025/05/20 17:50:28 by pecavalc         ###   ########.fr       */
+/*   Updated: 2025/09/07 00:58:29 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	test_ft_putchar_fd(void)
 	if (fd == -1)
 	{
 		printf("Cannot read file.\n");
-		return (1);
+		return (0);
 	}
 	i = 0;
 	while (text[i])
@@ -33,5 +33,6 @@ int	test_ft_putchar_fd(void)
     	ft_putchar_fd(text[i++], fd);
 	}
 	close(fd);
+	printf("%-30s [File created, inspect visually: _test_ft_putchar_fd_test.txt]\n", "test_ft_putchar_fd");
 	return (-1);
 }

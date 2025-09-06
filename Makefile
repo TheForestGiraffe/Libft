@@ -6,7 +6,7 @@
 #    By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/12 13:15:08 by pecavalc          #+#    #+#              #
-#    Updated: 2025/09/06 19:19:45 by pecavalc         ###   ########.fr        #
+#    Updated: 2025/09/06 23:01:25 by pecavalc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,12 +55,12 @@ CFLAGS = -Wall -Wextra -Werror -c -I$(HEADER_DIR_PUBLIC) \
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(HEADER_PUBLIC) $(HEADER_PRINTF) $(HEADER_GNL)
+$(NAME): $(OBJS)
 	ar rcs $@ $^
 
 vpath %.c $(SRCS_DIR) $(SRCS_DIR_GNL) $(SRCS_DIR_PRINTF)
 
-$(OBJS_DIR)/%.o: %.c
+$(OBJS_DIR)/%.o: %.c $(HEADER_PUBLIC) $(HEADER_PRINTF) $(HEADER_GNL)
 	mkdir -p $(OBJS_DIR)
 	cc $(CFLAGS) $< -o $@
 
