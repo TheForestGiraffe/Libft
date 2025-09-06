@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   test_ft_putnbr_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/18 19:03:32 by pecavalc          #+#    #+#             */
-/*   Updated: 2025/09/06 19:12:51 by pecavalc         ###   ########.fr       */
+/*   Created: 2025/05/20 16:37:04 by pecavalc          #+#    #+#             */
+/*   Updated: 2025/09/07 01:00:27 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+int	test_ft_putnbr_fd(void)
 {
-	size_t	i;
+	int		fd;
 
-	i = 0;
-	while (i < n)
+	fd = open("_test_ft_putnbr_fd_test.txt", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (fd == -1)
 	{
-		if (((unsigned char *)s)[i] == (unsigned char)c)
-			return (&((void *)s)[i]);
-		i++;
+		printf("Cannot read file.\n");
+		return (0);
 	}
-	return (NULL);
+    ft_putnbr_fd(-42000042, fd);
+	close(fd);
+	printf("%-30s [File created, inspect visually: _test_ft_putnbr_fd_test.txt]\n", "test_ft_putnbr_fd");
+	return (-1);
 }

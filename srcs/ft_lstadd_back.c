@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pecavalc <pecavalc@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/18 19:03:32 by pecavalc          #+#    #+#             */
-/*   Updated: 2025/09/06 19:12:51 by pecavalc         ###   ########.fr       */
+/*   Created: 2025/06/14 00:31:22 by pecavalc          #+#    #+#             */
+/*   Updated: 2025/09/06 19:11:49 by pecavalc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stddef.h>
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_lstadd_back(t_list **lst, t_list *new_node)
 {
-	size_t	i;
+	t_list	*lst_last;
 
-	i = 0;
-	while (i < n)
+	if (!lst || !new_node)
+		return ;
+	if (*lst == NULL)
 	{
-		if (((unsigned char *)s)[i] == (unsigned char)c)
-			return (&((void *)s)[i]);
-		i++;
+		*lst = new_node;
+		new_node->next = NULL;
+		return ;
 	}
-	return (NULL);
+	lst_last = ft_lstlast(*lst);
+	lst_last->next = new_node;
+	new_node->next = NULL;
 }
