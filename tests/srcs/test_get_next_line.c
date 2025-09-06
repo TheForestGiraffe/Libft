@@ -9,7 +9,7 @@ int	test_get_next_line(void)
 {
 	int		fd;
 	
-	fd = open("srcs/get_next_line_test_files/lorem.txt", O_RDONLY);
+	fd = open("srcs/test_get_next_line_lorem.txt", O_RDONLY);
 
 	if (fd < 0)
 	{
