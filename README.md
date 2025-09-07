@@ -1,9 +1,9 @@
-#Libft
+# Libft
 
 This library reimplements a set of functions from the C Standard Library (libc).
 It also includes a custom get_next_line function, which is not part of libc. 
 
-##List of Functions:
+## List of Functions:
 ft_atoi
 ft_bzero
 ft_calloc
