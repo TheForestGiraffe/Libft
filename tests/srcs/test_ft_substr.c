@@ -17,14 +17,12 @@
 
 int	test_ft_substr(void)
 {
-	int		test_result;
 	char	str_1[] = "Lorem Ipsum.";
 	char	str_2[] = "test";
 	char	*substr_1;
 	char	*substr_2;
 	char	*substr_3;
 
-	test_result = 1;
 	substr_1 = ft_substr(str_1, 6, 5);
 	substr_2 = ft_substr(str_2, 10, 1);
 	substr_3 = ft_substr(str_2, 2, 0);
