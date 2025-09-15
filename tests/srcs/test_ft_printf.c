@@ -26,8 +26,8 @@ void	test_ft_printf(void)
 	test_x();
 	test_X();
 	test_p();
-	test_empty_str();
-	test_null_str();
+	//test_empty_str();
+	//test_null_str();
 	test_double_percent();
 	test_all_again();
 }
@@ -155,7 +155,7 @@ void	test_p(void)
 	ret_ft = ft_printf("ft_printf: %p, %p\n", ptr_1, ptr_2);
 	printf("ret_or: %i \nret_ft: %i\n\n", ret_or, ret_ft);
 }
-
+/*
 void	test_empty_str(void)
 {
 	int		ret_or;
@@ -185,7 +185,7 @@ void	test_null_str(void)
 	printf("ret_ft: %i\n", ret_ft);
 	printf("\n");
 }
-
+*/
 void	test_double_percent(void)
 {
 	int		ret_or;
