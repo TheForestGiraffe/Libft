@@ -40,7 +40,7 @@ Author: Pedro Lima (github.com/TheForestGiraffe)
 -   [API overview](#api-overview)
 -   [Testing framework](#testing-framework)
     -   [Configuring get_next_line buffer size](#configuring-get_next_line-buffer-size)
-    -   [Norm compliance](#norm-compliance)
+    -   [42 Norm compliance](#42-norm-compliance)
     -   [Test artifacts cleanup](#test-artifacts-cleanup)
 -   [List of Functions](#list-of-functions)
 
@@ -182,7 +182,7 @@ Passed as:
 
 ------------------------------------------------------------------------
 
-### Norm compliance
+### 42 Norm compliance
 
 ``` bash
 make norm
