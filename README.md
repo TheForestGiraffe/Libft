@@ -1,4 +1,4 @@
-# libft v2.2.0
+# libft
 
 A custom **C utility library** built as a single static archive:
 **`libft.a`**, developed as part of the 42 curriculum.
