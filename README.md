@@ -1,4 +1,4 @@
-# libft
+# libft v2.2.0
 
 A custom **C utility library** built as a single static archive:
 **`libft.a`**, developed as part of the 42 curriculum.
@@ -238,6 +238,7 @@ Removes temporary test files.
 -   ft_strmapi
 -   ft_strncmp
 -   ft_strnstr
+-   ft_strtol
 -   ft_strrchr
 -   ft_strtrim
 -   ft_substr
